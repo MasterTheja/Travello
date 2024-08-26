@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View, BackHandler, Alert} from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 const Homescreen = ({route}) => {
@@ -74,6 +74,24 @@ const Homescreen = ({route}) => {
   useEffect(() => {
     const {userName} = route.params;
     setUser(userName);
+    const backAction = () => {
+      Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
   }, []);
 
   const handleNotifications = (item, index) => {

@@ -10,6 +10,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import {GMAPS_KEY} from '@env'
 
 export default function SearchScreen({navigation}) {
   const [coords, setCoords] = useState();
@@ -42,7 +43,9 @@ const [warning, setWarning] = useState();
     //   details?.geometry?.location.lng,
     // );
   };
-  const ApiKey = 'AIzaSyAAdnoL9ZLaHUAZQ0z1QDjgQWXJCkFlCuE';
+  // const ApiKey = 'AIzaSyAAdnoL9ZLaHUAZQ0z1QDjgQWXJCkFlCuE';
+  // const ApiKey = GMAPS_KEY;
+  console.log('ApiKey==>',GMAPS_KEY)
   const navToMap = () => {
     if(!coords ){
         setWarning('Please Enter the Source Location ')
@@ -77,7 +80,7 @@ const [warning, setWarning] = useState();
             onFail={error => console.log(error)}
             onNotFound={() => console.log('no Source results found')}
             query={{
-              key: ApiKey,
+              key: GMAPS_KEY,
               language: 'en',
             }}
           />
@@ -93,7 +96,7 @@ const [warning, setWarning] = useState();
             onFail={error => console.log(error)}
             onNotFound={() => console.log('no Destination results found')}
             query={{
-              key: ApiKey,
+              key: GMAPS_KEY,
               language: 'en',
             }}
           />
