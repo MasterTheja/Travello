@@ -15,6 +15,7 @@ import MapView, {Marker} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {useState} from 'react';
+import {GMAPS_KEY} from '@env';
 
 const MapScreen = ({route, navigation}) => {
   //   const [coords, setCoords] = React.useState({
@@ -63,7 +64,7 @@ const MapScreen = ({route, navigation}) => {
   };
 
   //   const ApiKey = 'AIzaSyD59fFQRuICNvhlyx1RfuM3kiBWRJgchFM';
-  const ApiKey = 'AIzaSyAAdnoL9ZLaHUAZQ0z1QDjgQWXJCkFlCuE';
+  const ApiKey = GMAPS_KEY;
 
   const distanceGetting = () => {
     return (
